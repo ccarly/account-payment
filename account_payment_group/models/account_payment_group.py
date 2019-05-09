@@ -134,7 +134,7 @@ class AccountPaymentGroup(models.Model):
         ('posted', 'Posted'),
         # ('sent', 'Sent'),
         # ('reconciled', 'Reconciled')
-        ('cancel', 'Cancelled'),
+        ('cancelled', 'Cancelled'),
     ],
         readonly=True,
         default='draft',
@@ -569,7 +569,7 @@ class AccountPaymentGroup(models.Model):
                 #     move.line_ids.remove_move_reconcile()
             rec.payment_ids.cancel()
             rec.payment_ids.write({'invoice_ids': [(5, 0, 0)]})
-        self.write({'state': 'cancel'})
+        self.write({'state': 'cancelled'})
 
     @api.multi
     def action_draft(self):
